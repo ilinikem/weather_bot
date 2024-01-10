@@ -1,15 +1,20 @@
+import os
 import logging
-from telegram import Update, ForceReply, ReplyKeyboardMarkup
+from telegram import Update, ReplyKeyboardMarkup
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, CallbackContext
 import requests
+
+from dotenv import load_dotenv
 
 logging.basicConfig(format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO)
 logging.getLogger("httpx").setLevel(logging.WARNING)
 
 logger = logging.getLogger(__name__)
 
-BOT_TOKEN = '6968145260:AAEoUYcNlzmdx54r6-ZG41P3O_fY1UrDJ-k'
-API_ENDPOINT = 'http://127.0.0.1:8000/api/weather/'  # Замените на свой URL API
+load_dotenv()
+
+BOT_TOKEN = os.getenv('BOT_TOKEN')
+API_ENDPOINT = 'http://127.0.0.1:8000/api/weather/'
 
 
 async def start(update: Update, context: CallbackContext) -> None:
