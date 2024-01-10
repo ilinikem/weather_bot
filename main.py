@@ -13,6 +13,11 @@ API_ENDPOINT = 'http://127.0.0.1:8000/api/weather/'  # Замените на с�
 
 
 async def start(update: Update, context: CallbackContext) -> None:
+
+    if update.message.text.lower() == 'узнать погоду':
+        await update.message.reply_text('Можете ввести название города')
+        return
+
     user = update.effective_user
     keyboard = [[{"text": "Узнать погоду", "request_location": False}]]
     reply_markup = ReplyKeyboardMarkup(keyboard, one_time_keyboard=True)
